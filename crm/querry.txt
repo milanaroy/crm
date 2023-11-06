@@ -1,0 +1,33 @@
+
+class Employees(models.Model):
+    name=models.CharField(max_length=200)
+    department=models.CharField(max_length=200)
+    salary=models.PositiveIntegerField()
+    email=models.EmailField(unique=True)
+    age=models.PositiveBigIntegerField()
+    contact=models.CharField(null=True,max_length=200)
+
+orm query for creating new object
+
+Employees.objects.create(name="ravi",department="hr",salary=50000,email="ravi@gmail.com",age=25,contact="test")
+
+orm query for fetching all record 
+>qs= Employees.objects.all()
+orm querry for fetching specific detail of an  employee
+>qs=Employees.objects.get(id=1)
+orm query for filtering employee records
+>qs=Employees.objects.filter(department="hr")
+>qs=Employees.objects.filter(salary__lte=50000)
+__gte =>=
+__lte <=
+__gt >
+__lt <
+orm querry to excluding objects
+>qs=Employees.objects.exclude(department="hr")
+orm querry for update 
+Employees.objects.filter(id=2).update(contact="newcontact",age=22)
+orm querry for delete
+Employees.objects.filter(id=6).delete()
+for sorting data
+qs=Employees.objects.all().order_by("salary")
+qs=Employees.objects.all().order_by("-salary")
